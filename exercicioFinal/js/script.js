@@ -1,4 +1,4 @@
-function escopoPrincipal () {
+function escopoPrincipal() {
     const formIMC = document.querySelector('.formIMC');
     const resultadoIMC = document.querySelector('.resultadoFormIMC')
 
@@ -6,7 +6,7 @@ function escopoPrincipal () {
 
     let contador = 1 // Variável para contador criada
 
-    function recebeEventoForm (evento) {
+    function recebeEventoForm(evento) {
         evento.preventDefault(); // cancela o evento sem parar a programação
         console.log(`Número de formulários enviados: ${contador}`)
         contador++; // Adiciona mais '1' para a variável contador
@@ -21,7 +21,7 @@ function escopoPrincipal () {
         const pesoValue = peso.value;
         const alturaValue = altura.value;
 
-        function criaDados(nomeValue, sobrenomeValue, pesoValue, alturaValue) { 
+        function criaDados(nomeValue, sobrenomeValue, pesoValue, alturaValue) {
             return {
                 nome: nomeValue,
                 sobrenome: sobrenomeValue,
@@ -35,7 +35,7 @@ function escopoPrincipal () {
             let alturaValueNumber = Number(alturaValue.replace(',', '.'));
 
 
-            const resultadoConta = (pesoValueNumber / (alturaValueNumber * alturaValueNumber)) 
+            const resultadoConta = (pesoValueNumber / (alturaValueNumber * alturaValueNumber))
             return resultadoConta.toFixed(2)
         }
 
@@ -43,15 +43,18 @@ function escopoPrincipal () {
         console.log(pessoas)
 
         resultadoIMC.innerHTML += `
-        <p>Nome:${pessoas[0].nome} ${pessoas[0].sobrenome}, peso: ${pessoas[0].peso}kg, altura: ${pessoas[0].altura}m, IMC: ${calculaImc(pessoas[0].peso, pessoas[0].altura)}</p>
+        <p>Nome: ${pessoas[0].nome} ${pessoas[0].sobrenome}, peso: ${pessoas[0].peso}
+        kg, altura: ${pessoas[0].altura}m, IMC: ${calculaImc(pessoas[0].peso, pessoas[0].altura)}</p>
         `;
     }
 
-    
-
     formIMC.addEventListener('submit', recebeEventoForm) // Adiciona um espião para escutar um evento
-
-    
 }
 
 escopoPrincipal();
+
+//SOLUÇÃO DO PROFESSOR
+
+/*
+*Ele economiza linhas fazendo o objeto dentro do array, exemplo: pessoas.push({nome: nome.value})
+*/
