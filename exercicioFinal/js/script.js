@@ -16,16 +16,41 @@ function escopoPrincipal () {
         const peso = formIMC.querySelector('.peso');
         const altura = formIMC.querySelector('.altura');
 
-        function criaPessoa (nome, sobrenome, peso, altura) { 
-            return {nome, sobrenome, peso, altura}
+        const nomeValue = nome.value;
+        const sobrenomeValue = sobrenome.value;
+        const pesoValue = peso.value;
+        const alturaValue = altura.value;
+
+        function criaDados(nomeValue, sobrenomeValue, pesoValue, alturaValue) { 
+            return {
+                nome: nomeValue,
+                sobrenome: sobrenomeValue,
+                peso: pesoValue,
+                altura: alturaValue
+            }
         }; //factory
 
-        console.log(nome.value, sobrenome.value, peso.value, altura.value)
+        function calculaImc(pesoValue, alturaValue) {
+            let pesoValueNumber = Number(pesoValue.replace(',', '.'));
+            let alturaValueNumber = Number(alturaValue.replace(',', '.'));
+
+
+            const resultadoConta = (pesoValueNumber / (alturaValueNumber * alturaValueNumber)) 
+            return resultadoConta.toFixed(2)
+        }
+
+        pessoas.unshift(criaDados(nomeValue, sobrenomeValue, pesoValue, alturaValue));
+        console.log(pessoas)
+
+        resultadoIMC.innerHTML += `
+        <p>Nome:${pessoas[0].nome} ${pessoas[0].sobrenome}, peso: ${pessoas[0].peso}kg, altura: ${pessoas[0].altura}m, IMC: ${calculaImc(pessoas[0].peso, pessoas[0].altura)}</p>
+        `;
     }
+
+    
 
     formIMC.addEventListener('submit', recebeEventoForm) // Adiciona um espião para escutar um evento
 
-    resultadoIMC.innerHTML = `<p>${pessoas}</p>`
     
 }
 
